@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>כניסה</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f5f2;--surface:#fff;--ink:#1d1d1f;--muted:#6b6b70;--line:#e4e2dc;--accent:#1f4e79;--accent-soft:#e8eef5;--warn:#9a5b00;--warn-soft:#fdf3e1;--done:#1e7a46;--done-soft:#e5f4ea;--work:#1f4e79;--work-soft:#e8eef5;--wait:#9a5b00;--wait-soft:#fdf3e1;--none:#6b6b70;--none-soft:#efeeea}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#141416;--surface:#1d1d20;--ink:#ececee;--muted:#a0a0a8;--line:#2e2e33;--accent:#8db4dc;--accent-soft:#1f2a36;--warn:#f0b35a;--warn-soft:#2f2616;--done:#6fcf97;--done-soft:#17291f;--work:#8db4dc;--work-soft:#1f2a36;--wait:#f0b35a;--wait-soft:#2f2616;--none:#a0a0a8;--none-soft:#26262a}}
+:root[data-theme="dark"]{--bg:#141416;--surface:#1d1d20;--ink:#ececee;--muted:#a0a0a8;--line:#2e2e33;--accent:#8db4dc;--accent-soft:#1f2a36;--warn:#f0b35a;--warn-soft:#2f2616;--done:#6fcf97;--done-soft:#17291f;--work:#8db4dc;--work-soft:#1f2a36;--wait:#f0b35a;--wait-soft:#2f2616;--none:#a0a0a8;--none-soft:#26262a}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Heebo,system-ui,sans-serif;font-size:17px;line-height:1.6}
+.wrap{max-width:1280px;margin:0 auto;padding:24px 16px 64px}
+.login{min-height:100vh;display:grid;place-items:center;padding:16px}
+.login form{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;width:100%;max-width:360px;display:grid;gap:14px}
+.login h1{font-size:22px;margin:0 0 4px}
+.login label{display:grid;gap:6px;font-size:15px;color:var(--muted)}
+.login input{font:inherit;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+.login button{font:inherit;font-weight:700;padding:11px;border:0;border-radius:10px;background:var(--accent);color:var(--surface);cursor:pointer}
+.login button:disabled{opacity:.6;cursor:wait}
+.err{color:#c0392b;font-size:14px;min-height:1.2em;margin:0}
+.pw{position:relative}
+.pw input{width:100%;padding-left:44px}
+.login .eye{position:absolute;left:4px;top:50%;transform:translateY(-50%);background:none;border:0;padding:8px;color:var(--muted);cursor:pointer;display:grid;place-items:center;border-radius:8px}
+.login .eye:hover,.login .eye:focus-visible{color:var(--ink)}
+.eye svg{width:20px;height:20px}
+.remember{display:flex !important;align-items:center;gap:8px;font-size:15px;color:var(--ink) !important}
+.remember input{width:18px;height:18px;margin:0;accent-color:var(--accent)}
+.logout{display:flex;justify-content:flex-start;margin-bottom:8px}
+.layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:32px;align-items:start}
+.side{position:sticky;top:24px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;gap:12px}
+.side-title{margin:0;font-weight:800;font-size:16px;padding:0 8px}
+.menu{display:grid;gap:4px}
+.menu a{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;border-radius:10px;color:var(--ink);text-decoration:none;font-weight:500}
+.menu a:hover{background:var(--bg)}
+.menu a[aria-current="page"]{background:var(--accent-soft);color:var(--accent);font-weight:700}
+.soon{font-size:12px;color:var(--muted);font-weight:400}
+#logout-slot .logout{margin:0;border-top:1px solid var(--line);padding-top:12px}
+.main{min-width:0}
+.main h2{margin-top:28px}
+th small{display:block;font-weight:400;font-size:12px;color:var(--muted)}
+.matrix table{min-width:980px}
+.matrix th{color:var(--ink);font-weight:700;font-size:15px;background:var(--surface)}
+.matrix td{font-size:15px;width:22%}
+.matrix td.rank,.matrix th.rank{width:44px;min-width:44px;text-align:center;color:var(--muted);font-weight:700;white-space:nowrap;position:sticky;right:0;background:var(--surface)}
+.matrix td:nth-child(2),.matrix th:nth-child(2){position:sticky;right:44px;background:var(--surface);width:16%;box-shadow:-1px 0 0 var(--line);font-weight:700}
+.matrix td:first-child{white-space:nowrap}
+.matrix td.open{color:var(--warn);font-weight:700;background:var(--warn-soft)}
+.matrix td.done{color:var(--done);font-weight:700;background:var(--done-soft)}
+.matrix td.work{color:var(--work);font-weight:700;background:var(--work-soft)}
+bdi{white-space:nowrap}
+.topic-tools{display:flex;gap:8px;margin:0 0 10px}
+.topic-tools button{font:inherit;font-size:14px;background:var(--surface);border:1px solid var(--line);color:var(--ink);border-radius:99px;padding:4px 14px;cursor:pointer}
+.topics{display:grid;gap:8px}
+.topic{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.topic summary{display:flex;align-items:center;gap:12px;padding:14px 16px;cursor:pointer;list-style:none}
+.topic summary::-webkit-details-marker{display:none}
+.topic summary::before{content:"";width:8px;height:8px;border-left:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .15s;flex:none;margin-top:-4px}
+.topic[open] summary::before{transform:rotate(-45deg);margin-top:4px}
+.topic summary:hover{background:var(--bg)}
+.t-name{font-weight:700;flex:1}
+.t-status{font-size:14px;font-weight:700;padding:3px 12px;border-radius:99px;text-align:center}
+.t-status.open{color:var(--warn);background:var(--warn-soft)}
+.t-status.done{color:var(--done);background:var(--done-soft)}
+.t-status.work{color:var(--work);background:var(--work-soft)}
+.t-dates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line)}
+.t-date{padding:14px 16px;font-size:15px}
+.t-date+.t-date{border-right:1px solid var(--line)}
+.t-date p{margin:0}
+.t-when{font-weight:700;margin-bottom:6px !important}
+.t-when small{font-weight:400;color:var(--muted);font-size:12px;margin-right:6px}
+.t-date.empty{color:var(--muted)}
+@media (max-width:700px){.t-dates{grid-template-columns:1fr}.t-date+.t-date{border-right:0;border-top:1px solid var(--line)}.t-date.empty{display:none}.topic summary{flex-wrap:wrap}.t-status{margin-right:20px}}
+@media (max-width:860px){.layout{grid-template-columns:minmax(0,1fr);gap:16px}.side{position:static;padding:8px}.side-title{display:none}.menu{display:flex;flex-wrap:wrap}.menu a{flex:1 1 0;min-width:max-content;justify-content:center;flex-direction:column;gap:0;padding:8px}#logout-slot .logout{border:0;padding:0;justify-content:center}}
+.logout button{font:inherit;font-size:14px;background:none;border:1px solid var(--line);color:var(--muted);border-radius:99px;padding:4px 14px;cursor:pointer}
+.logout button:hover{color:var(--ink)}
+.hero{padding:8px 0 20px;border-bottom:1px solid var(--line);margin-bottom:28px}
+.eyebrow{color:var(--accent);font-weight:700;font-size:14px;margin:0}
+h1{font-size:30px;line-height:1.25;margin:6px 0;font-weight:800}
+.meta{color:var(--muted);margin:0;font-size:15px}
+section{margin:0 0 36px}
+h2{font-size:22px;margin:0 0 14px}
+h3{font-size:18px;margin:0 0 8px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px}
+.card.warn{border-color:var(--warn);background:var(--warn-soft)}
+.card p{margin:0 0 8px}
+.ask{font-weight:700;color:var(--accent)}
+.card.warn .ask{color:var(--warn)}
+.points{padding:0 20px 0 0;margin:0;display:grid;gap:10px}
+.note{color:var(--muted);font-size:15px}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{text-align:right;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:14px;color:var(--muted);font-weight:500}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:700;white-space:nowrap}
+.tag{display:inline-block;padding:2px 10px;border-radius:99px;font-size:14px;font-weight:500}
+.tag.done{background:var(--done-soft);color:var(--done)}
+.tag.work{background:var(--work-soft);color:var(--work)}
+.tag.wait{background:var(--wait-soft);color:var(--wait)}
+.tag.none{background:var(--none-soft);color:var(--none)}
+@media (max-width:640px){h1{font-size:24px}body{font-size:16px}.tasks table{min-width:0}.tasks thead{display:none}.tasks table,.tasks tbody,.tasks tr,.tasks td{display:block;width:100%}.tasks tr{padding:12px 14px;border-bottom:1px solid var(--line)}.tasks tr:last-child{border-bottom:0}.tasks td{border:0;padding:2px 0}.tasks td:first-child{color:var(--muted);font-size:14px}.tasks td:last-child{padding-top:6px}.matrix table{min-width:760px}.matrix td,.matrix th{padding:9px 10px;font-size:14px}}
+</style>
+</head>
+<body>
+<div class="login" id="login" hidden>
+  <form id="f" autocomplete="on">
+    <h1>כניסה</h1>
+    <label>שם משתמש<input id="u" name="username" autocomplete="username" required></label>
+    <label>סיסמה<span class="pw"><input id="p" name="password" type="password" autocomplete="current-password" required><button type="button" class="eye" id="eye" aria-label="הצג סיסמה" aria-pressed="false" title="הצג סיסמה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><line id="slash" x1="3" y1="3" x2="21" y2="21" style="display:none"/></svg></button></span></label>
+    <label class="remember"><input type="checkbox" id="r" checked>לזכור אותי במכשיר הזה</label>
+    <button id="b" type="submit">כניסה</button>
+    <p class="err" id="e" role="alert"></p>
+  </form>
+</div>
+<main class="wrap" id="content" hidden></main>
+<noscript><p style="padding:16px">כדי לפתוח את הדף צריך דפדפן עם JavaScript.</p></noscript>
+<script>
+const P={"s":"dOD6+VqpoWrpVre6pmwp1Q==","i":"gIMih7TROrlRwsxg","c":"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","n":600000};
+const d=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+// המפתח נשמר במכשיר כ-CryptoKey שאי אפשר לייצא (IndexedDB). הסיסמה עצמה לא נשמרת.
+const DB='jd-client-update',ST='keys',ID='k-'+P.s;
+const idb=()=>new Promise((res,rej)=>{const q=indexedDB.open(DB,1);q.onupgradeneeded=()=>q.result.createObjectStore(ST);q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error);});
+const kv=async(mode,fn)=>{const db=await idb();return new Promise((res,rej)=>{const t=db.transaction(ST,mode),r=fn(t.objectStore(ST));t.oncomplete=()=>res(r&&r.result);t.onerror=()=>rej(t.error);});};
+const getKey=()=>kv('readonly',s=>s.get(ID)).catch(()=>null);
+const putKey=k=>kv('readwrite',s=>s.put(k,ID)).catch(()=>{});
+const clearKeys=()=>kv('readwrite',s=>s.clear()).catch(()=>{});
+const open=async key=>{
+  const html=new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:d(P.i)},key,d(P.c)));
+  const m=document.getElementById('content');
+  m.innerHTML=html;m.hidden=false;
+  const lo='<div class="logout"><button type="button" id="out">התנתקות מהמכשיר הזה</button></div>';
+  const slot=document.getElementById('logout-slot');if(slot)slot.innerHTML=lo;else m.insertAdjacentHTML('afterbegin',lo);
+  const panels=[...m.querySelectorAll('[data-panel]')];
+  if(panels.length){const show=()=>{const want=location.hash.slice(1);const cur=panels.find(p=>p.dataset.panel===want)||panels.find(p=>!p.hidden)||panels[0];panels.forEach(p=>p.hidden=p!==cur);m.querySelectorAll('[data-tab]').forEach(a=>a.dataset.tab===cur.dataset.panel?a.setAttribute('aria-current','page'):a.removeAttribute('aria-current'));};window.addEventListener('hashchange',()=>{show();window.scrollTo(0,0);});show();}
+  m.querySelectorAll('[data-open-frame]').forEach(b=>b.addEventListener('click',()=>{const f=document.getElementById(b.dataset.openFrame);if(f)window.open(URL.createObjectURL(new Blob([f.srcdoc],{type:'text/html'})),'_blank');}));
+  m.querySelectorAll('[data-expand]').forEach(b=>b.addEventListener('click',()=>{const o=b.dataset.expand==='open';b.closest('[data-panel],main').querySelectorAll('details').forEach(x=>x.open=o);}));
+  // data-daterange: טבלת סיכום קמפיינים עם בחירת תאריכים. הנתונים היומיים ב-<script type="application/json"> בתוך הרכיב:
+  // {"campaigns":[{"label","result","rows":[[YYYY-MM-DD,spend,results,lpv,reach,impressions,link_clicks],...]}]}. בלי הרכיב בדף, לא קורה כלום.
+  // מ-18.11.2026 העמודה האחרונה היא אחוז הקלקה (קליקים על הקישור חלקי חשיפות), במקום תפוצה: תפוצה לא מתחברת בין ימים.
+  m.querySelectorAll('[data-daterange]').forEach(w=>{try{
+    const D=JSON.parse(w.querySelector('script[type="application/json"]').textContent);
+    const ds=[];D.campaigns.forEach(c=>c.rows.forEach(r=>ds.push(r[0])));ds.sort();
+    const min=ds[0],max=ds[ds.length-1],f=w.querySelector('input[name=from]'),t=w.querySelector('input[name=to]'),out=w.querySelector('.dr-out'),btns=[...w.querySelectorAll('[data-days]')];
+    f.min=t.min=min;f.max=t.max=max;
+    const add=(s,n)=>{const x=new Date(s+'T00:00:00Z');x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10);};
+    const dmy=s=>{const p=s.split('-');return (+p[2])+'.'+(+p[1])+'.'+p[0];};
+    const nf=(v,dg)=>v.toLocaleString('he-IL',{minimumFractionDigits:dg||0,maximumFractionDigits:dg||0});
+    const ils=(v,dg)=>nf(v,dg)+' ₪';
+    const render=()=>{let a=f.value||min,b=t.value||max;if(a>b){const x=a;a=b;b=x;}
+      const tot=[0,0,0,0,0,0];let body='',days=0;
+      const ctr=x=>(x[4]&&x[5]?nf(x[5]/x[4]*100,2)+'%':'—');
+      D.campaigns.forEach(c=>{const s=[0,0,0,0,0,0];let n=0;c.rows.forEach(r=>{if(r[0]>=a&&r[0]<=b){n++;for(let i=0;i<6;i++)s[i]+=(r[i+1]||0);}});
+        days=Math.max(days,n);for(let i=0;i<6;i++)tot[i]+=s[i];
+        body+='<tr><td>'+c.label+'</td>'+(n?'<td>'+ils(s[0])+'</td><td>'+nf(s[1])+' <small>'+c.result+'</small></td><td>'+(s[1]?ils(s[0]/s[1],2):'—')+'</td><td>'+(s[2]?ils(s[0]/s[2],2):'—')+'</td><td>'+(s[2]?nf(s[1]/s[2]*100,1)+'%':'—')+'</td><td>'+ctr(s)+'</td>':'<td colspan="6" class="dr-none">לא רץ בטווח הזה</td>')+'</tr>';});
+      body+='<tr class="dr-tot"><td>סה״כ</td><td>'+ils(tot[0])+'</td><td>'+nf(tot[1])+'</td><td>'+(tot[1]?ils(tot[0]/tot[1],2):'—')+'</td><td>'+(tot[2]?ils(tot[0]/tot[2],2):'—')+'</td><td>'+(tot[2]?nf(tot[1]/tot[2]*100,1)+'%':'—')+'</td><td>'+ctr(tot)+'</td></tr>';
+      out.innerHTML='<p class="dr-range">'+dmy(a)+' – '+dmy(b)+'</p><div class="dr-tbl"><table><thead><tr><th>קמפיין</th><th>תקציב שנוצל</th><th>לידים</th><th>עלות ליד</th><th>עלות ביקור באתר</th><th>יחס המרה</th><th>אחוז הקלקה</th></tr></thead><tbody>'+body+'</tbody></table></div>';
+      btns.forEach(x=>x.setAttribute('aria-pressed',(x.dataset.days==='all'?a===min:a===add(max,1-(+x.dataset.days)))&&b===max));};
+    const preset=n=>{t.value=max;f.value=n==='all'?min:(add(max,1-(+n))<min?min:add(max,1-(+n)));render();};
+    btns.forEach(x=>x.addEventListener('click',()=>preset(x.dataset.days)));
+    f.addEventListener('change',render);t.addEventListener('change',render);
+    preset(w.dataset.daterange||'30');
+  }catch(_){}});
+  document.getElementById('login').remove();const tt=m.querySelector('[data-title]');document.title=tt?tt.dataset.title:'עדכון עבודה';
+  document.getElementById('out').addEventListener('click',async()=>{await clearKeys();location.reload();});
+};
+(async()=>{
+  try{const k=await getKey();if(k){await open(k);return;}}catch(_){await clearKeys();}
+  document.getElementById('login').hidden=false;document.getElementById('u').focus();
+})();
+const eye=document.getElementById('eye'),pw=document.getElementById('p'),slash=document.getElementById('slash');
+eye.addEventListener('click',()=>{const show=pw.type==='password';pw.type=show?'text':'password';eye.setAttribute('aria-pressed',show);const l=show?'הסתר סיסמה':'הצג סיסמה';eye.setAttribute('aria-label',l);eye.title=l;slash.style.display=show?'':'none';pw.focus();});
+document.getElementById('f').addEventListener('submit',async ev=>{
+  ev.preventDefault();
+  const b=document.getElementById('b'),e=document.getElementById('e');
+  b.disabled=true;e.textContent='';b.textContent='פותח...';
+  try{
+    const u=document.getElementById('u').value.trim().toLowerCase(),p=pw.value;
+    const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(u+'\n'+p),'PBKDF2',false,['deriveKey']);
+    const key=await crypto.subtle.deriveKey({name:'PBKDF2',salt:d(P.s),iterations:P.n,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['decrypt']);
+    const remember=document.getElementById('r').checked;
+    await open(key);
+    if(remember)await putKey(key);
+  }catch(_){e.textContent='שם המשתמש או הסיסמה לא נכונים';b.disabled=false;b.textContent='כניסה';}
+});
+</script>
+</body>
+</html>
